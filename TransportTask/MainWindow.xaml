@@ -1,0 +1,55 @@
+﻿<Window x:Class="TransportTask.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TransportTask"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="676" Width="800" Background="#F9F9F9">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Height="666" Width="800">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="53"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto" MinHeight="161"/>
+        </Grid.RowDefinitions>
+
+        <!-- Кнопки управления -->
+        <Button x:Name="Button_Fill" Content="Заполнить поля (Вариант 6)" Click="Button_Fill_Click" ToolTip="Нажмите чтобы заполнить все поля" Width="200" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"   />
+        <Button x:Name="Button_Fill_1" Content="Заполнить поля (Вариант 10)" Click="Button_Fill_Click_1" ToolTip="Нажмите чтобы заполнить все поля" Width="200" Height="40" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+        <Button x:Name="Button_Clear" Content="Очистить поля" ToolTip="Нажмите чтобы очистить все поля" Click="Button_Clear_Click" Width="200"  HorizontalAlignment="Left" Margin="590,6,0,7" />
+
+
+        <!-- Основной контент с текстовыми полями -->
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Width="420" Height="266">
+            <StackPanel>
+                <Label Content="Поставщики (через запятую):" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" FontSize="14"/>
+                <TextBox Name="SupplyInput" Width="400" Height="30" Margin="0,5,0,15" FontSize="14" Padding="5"/>
+
+                <Label Content="Потребители (через запятую):" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" FontSize="14"/>
+                <TextBox Name="DemandInput" Width="400" Height="30" Margin="0,5,0,15" FontSize="14" Padding="5"/>
+
+                <Label Content="Затраты (строки через ';', значения через ','):" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" FontSize="14"/>
+                <TextBox Name="CostsInput" Width="400" Height="50" Margin="0,5,0,15" FontSize="14" Padding="5"/>
+            </StackPanel>
+        </Grid>
+        <Grid Height="40" Grid.Row="1" Width="440" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,390,0,0">
+            <Button x:Name="NorthwestCornerButton" Content="Метод северо-западного угла" Height="40" Click="NorthwestCornerButton_Click" HorizontalAlignment="Right" Margin="0,0,0,0" Width="200"/>
+            <Button x:Name="MinElementButton" Content="Метод минимальных элементов" Width="200" Height="40" Click="MinElementButton_Click" HorizontalAlignment="Left"/>
+
+        </Grid>
+
+        <!-- Таблица результатов -->
+        <DataGrid Name="ResultDataGrid" Grid.Row="2" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" Background="#FFFFFF" BorderBrush="#DDDDDD" BorderThickness="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Поставщик" Binding="{Binding SupplierIndex}" Width="120" />
+                <DataGridTextColumn Header="Потребитель 1" Binding="{Binding Quantities[0]}" Width="120" />
+                <DataGridTextColumn Header="Потребитель 2" Binding="{Binding Quantities[1]}" Width="120" />
+                <DataGridTextColumn Header="Потребитель 3" Binding="{Binding Quantities[2]}" Width="120" />
+                <DataGridTextColumn Header="Потребитель 4" Binding="{Binding Quantities[3]}" Width="120" />
+                <DataGridTextColumn Header="Потребитель 5" Binding="{Binding Quantities[4]}" Width="120" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>
